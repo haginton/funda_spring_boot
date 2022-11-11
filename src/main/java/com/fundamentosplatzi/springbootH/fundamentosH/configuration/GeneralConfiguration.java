@@ -31,9 +31,9 @@ public class GeneralConfiguration {
     @Bean
     public DataSource dataSource(){
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("org.h2.Driver");
-        dataSourceBuilder.url("jdbc:h2:mem:testdb");
-        dataSourceBuilder.username("SA");
+        dataSourceBuilder.driverClassName("org.h2.Driver"); //Controlador (nombre clase controladora)
+        dataSourceBuilder.url("jdbc:h2:mem:testdb"); //url jdbc, despues del h2 puedo definir un path para guardar la bd
+        dataSourceBuilder.username("SA") ;
         dataSourceBuilder.password("");
         return dataSourceBuilder.build();
     }
