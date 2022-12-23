@@ -70,11 +70,24 @@ public class FundamentosHApplication implements CommandLineRunner {
 		userRepository.findAndSort("user", Sort.by("id").descending())
 				.stream()
 				.forEach(user -> LOGGER.info("Usuario con metodo sort " + user));
+
+		userRepository.findByName("John")
+				.stream()
+				.forEach(user -> LOGGER.info("Usuario con query method " + user));
+
+		LOGGER.info("Usuario con query method findByEmailAndName: " + userRepository.findByEmailAndName("daniela@domain.com","Daniela")
+				.orElseThrow(() -> new RuntimeException("Usuario no encontrado")));
+
+		LOGGER.info("El usuario a partir del named parameter es: " +
+				userRepository.getAllByBirthDateAndEmail(LocalDate.of(2021, 9, 8), "daniela@domain.com")
+				.orElseThrow(() ->
+						new RuntimeException("No se encontro el usuario a partir del named parameter")));
+
 	}
 
 	private void saveUsersInDataBase(){
 		User user1 = new User("John", "john@domain.com", LocalDate.of(2021, 3, 13));
-		User user2 = new User("Marco", "marco@domain.com", LocalDate.of(2021, 12, 8));
+		User user2 = new User("John", "marco@domain.com", LocalDate.of(2021, 12, 8));
 		User user3 = new User("Daniela", "daniela@domain.com", LocalDate.of(2021, 9, 8));
 		User user4 = new User("Marisol", "marisol@domain.com", LocalDate.of(2021, 6, 18));
 		User user5 = new User("Karen", "karen@domain.com", LocalDate.of(2021, 1, 1));
