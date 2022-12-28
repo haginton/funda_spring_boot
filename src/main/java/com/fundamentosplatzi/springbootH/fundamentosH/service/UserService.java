@@ -46,7 +46,6 @@ public class UserService {
                             user.setName(newUser.getName());
                             return userRepository.save(user);
                         }
-                ).orElse(null);
-
+                ).get();
     }
 }

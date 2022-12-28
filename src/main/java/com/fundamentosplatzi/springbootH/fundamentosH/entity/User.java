@@ -1,5 +1,6 @@
 package com.fundamentosplatzi.springbootH.fundamentosH.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -25,7 +26,8 @@ public class User {
 
     //un usuario tiene muchos post, muchos post pertenecen a un usuario
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference //cuando el controlador expuesto como REST use el atributo de la entidad no genere un error de stackover flow
+    //@JsonIgnore
+    //@JsonManagedReference //cuando el controlador expuesto como REST use el atributo de la entidad no genere un error de stackover flow
     private List<Post> posts = new ArrayList<>();
 
     public User() {
